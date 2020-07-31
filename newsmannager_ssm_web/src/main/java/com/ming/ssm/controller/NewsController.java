@@ -3,6 +3,7 @@ import com.github.pagehelper.PageInfo;
 import com.ming.ssm.domain.News;
 import com.ming.ssm.domain.Topic;
 import com.ming.ssm.service.NewsService;
+import com.ming.ssm.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,13 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
+    /**
+     * 查询所有新闻
+     * @param page
+     * @param size
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/findAll.do")
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "8") int size) throws Exception {
 
@@ -34,7 +42,18 @@ public class NewsController {
         mv.addObject("pb", pageInfo);
         mv.setViewName("news_list");
         return mv;
+    }
 
+    /**
+     * 增加新闻
+     * @param news
+     * @return
+     */
+    @RequestMapping("/saveTopic.do")
+    public String saveNews(News news) throws Exception {
+        newsService.saveNews(news);
+
+        return "redirect:findAll.do";
     }
 
 }

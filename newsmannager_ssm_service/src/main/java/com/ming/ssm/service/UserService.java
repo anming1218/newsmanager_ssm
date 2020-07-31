@@ -15,10 +15,21 @@ import java.util.List;
 
 public interface UserService {
 
+
     /**
      * 查询所有用户
+     * @param page
+     * @param size
      * @return
+     * @throws Exception
      */
     List<User> findAll(int page,int size) throws Exception;
+
+    /**
+     * 增加用户
+     * @param user
+     * @throws Exception
+     */
+    void saveUser(User user) throws Exception;
 
 }

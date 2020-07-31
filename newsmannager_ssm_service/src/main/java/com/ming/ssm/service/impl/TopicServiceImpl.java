@@ -24,14 +24,36 @@ public class TopicServiceImpl implements TopicService {
 
 
     /**
-     * 查询所有主题
+     * 查询所有主题（分页）
      * @return
      * @throws Exception
      */
     @Override
     public List<Topic> findAll(int page, int size) throws Exception {
         //pageNum是页码值，pageS ize是每页显示条数
-        PageHelper.startPage(page,size);
+        PageHelper.startPage(page, size);
         return topicDao.findAll();
     }
+
+    /**
+     * 查询所有主题(不分页)
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<Topic> findAll() throws Exception {
+        return topicDao.findAll();
+    }
+
+    /**
+     * 保存主题
+     * @param topic
+     * @throws Exception
+     */
+    @Override
+    public void saveTopic(Topic topic) throws Exception {
+        topicDao.saveTopic(topic);
+    }
+
+
 }

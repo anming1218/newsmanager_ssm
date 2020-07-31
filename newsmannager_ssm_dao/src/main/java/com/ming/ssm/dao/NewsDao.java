@@ -1,8 +1,7 @@
 package com.ming.ssm.dao;
 import com.ming.ssm.domain.News;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import com.ming.ssm.domain.Topic;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,20 +20,31 @@ public interface NewsDao {
      * @return
      * @throws Exception
      */
-    @Select("select nid,topicname,title,author,summary,content,creattime,creatby,modifytime,modifyby,frequency from NEWS n left outer join TOPIC t on n.TID = t.TID")
+//    @Select("select nid,topicname,title,author,summary,content,creattime,creatby,modifytime,modifyby,frequency from NEWS n left outer join TOPIC t on n.TID = t.TID")
+    @Select("select * from news")
     @Results({
             @Result(id = true, property = "nid", column = "nid"),
-            @Result(property = "topic.topicname", column = "topic.topicname"),
-            @Result(property = "title",column = "title"),
+            @Result(property = "topic", column = "tid",javaType = Topic.class,one = @One(select = "com.ming.ssm.dao.TopicDao.findTopicById")),
+            @Result(property = "title", column = "title"),
             @Result(property = "author", column = "author"),
-            @Result(property = "summary",column = "summary"),
+            @Result(property = "summary", column = "summary"),
             @Result(property = "content", column = "content"),
-            @Result(property = "creattime",column = "creattime"),
+            @Result(property = "creattime", column = "creattime"),
             @Result(property = "creatby", column = "creatby"),
-            @Result(property = "modifytime",column = "modifytime"),
+            @Result(property = "modifytime", column = "modifytime"),
             @Result(property = "modifyby", column = "modifyby"),
-            @Result(property = "frequency",column = "frequency"),
+            @Result(property = "frequency", column = "frequency"),
     })
     List<News> findAll() throws Exception;
+
+
+    /**
+     * 增加新闻
+     * @param news
+     * @throws Exception
+     */
+    @Insert("INSERT INTO NEWS(TID, title, author, summary, content, creattime, creatby,frequency) " +
+            "VALUES (#{topic.tid},#{title},#{author},#{summary},#{content},#{creattime},#{creatby},#{frequency})")
+    void saveNews(News news) throws Exception;
 
 }

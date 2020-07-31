@@ -23,6 +23,13 @@ public class TopicController {
     @Autowired
     private TopicService service;
 
+    /**
+     * 查询所有主题
+     * @param page
+     * @param size
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/findAll.do")
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "8") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
@@ -32,6 +39,17 @@ public class TopicController {
         mv.addObject("pb", pageInfo);
         mv.setViewName("topic_list");
         return mv;
+    }
 
+    /**
+     * 增加主题
+     * @param topic
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/saveTopic.do")
+    public String saveTopic(Topic topic) throws Exception {
+        service.saveTopic(topic);
+        return "redirect:findAll.do";
     }
 }

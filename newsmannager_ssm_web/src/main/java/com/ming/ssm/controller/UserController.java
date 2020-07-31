@@ -23,6 +23,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 查询所有用户
+     * @param page
+     * @param size
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/findAll.do")
     public ModelAndView findAll(@RequestParam(name = "page",required = true,defaultValue = "1") int page,@RequestParam(name = "size",required = true,defaultValue = "8") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
@@ -34,4 +41,18 @@ public class UserController {
         mv.setViewName("user_list");
         return mv;
     }
+
+    /**
+     * 保存用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("saveUser.do")
+    public String saveUser(User user) throws Exception {
+        userService.saveUser(user);
+
+        return "redirect:findAll.do";
+    }
+
 }

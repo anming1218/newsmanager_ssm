@@ -1,11 +1,10 @@
 package com.ming.ssm.dao;
 import com.ming.ssm.domain.User;
-import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-
 
 import java.util.List;
 
@@ -34,5 +33,15 @@ public interface UserDao {
             @Result(property = "password", column = "password")
     })
     List<User> findAll() throws Exception;
+
+
+    /**
+     * 增加用户
+     * @param user
+     * @throws Exception
+     */
+    @Insert("INSERT INTO USERS(username, gender, age, email, password) VALUES (#{username},#{gender},#{age},#{email},#{password})")
+    void saveUser(User user) throws Exception;
+
 
 }

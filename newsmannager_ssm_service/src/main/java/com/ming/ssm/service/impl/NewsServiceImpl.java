@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,4 +33,17 @@ public class NewsServiceImpl implements NewsService {
         PageHelper.startPage(page, size);
         return newsDao.findAll();
     }
+
+    /**
+     * 增加新闻
+     * @param news
+     * @throws Exception
+     */
+    @Override
+    public void saveNews(News news) throws Exception {
+        news.setCreattime(new Date());
+        newsDao.saveNews(news);
+    }
+
+
 }

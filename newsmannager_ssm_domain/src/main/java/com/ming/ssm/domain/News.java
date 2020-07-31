@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class News implements Serializable {
     private String nid;
-    private String tid;
     private Topic topic;
     private String title;
     private String author;
@@ -39,7 +38,7 @@ public class News implements Serializable {
 
     public String getCreattimeStr() {
         if (creattime != null) {
-            creattimeStr = DateUtils.dateToString(modifytime, "yyyy-MM-dd HH:mm:ss");
+            creattimeStr = DateUtils.dateToString(creattime, "yyyy-MM-dd HH:mm:ss");
         }
         return creattimeStr;
     }
@@ -65,14 +64,6 @@ public class News implements Serializable {
 
     public void setNid(String nid) {
         this.nid = nid;
-    }
-
-    public String getTid() {
-        return tid;
-    }
-
-    public void setTid(String tid) {
-        this.tid = tid;
     }
 
     public String getTitle() {

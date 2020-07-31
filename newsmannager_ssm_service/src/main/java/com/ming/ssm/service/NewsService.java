@@ -16,6 +16,13 @@ public interface NewsService {
      * @return
      * @throws Exception
      */
-    List<News> findAll(int page,int size) throws Exception;
+    List<News> findAll(int page, int size) throws Exception;
+
+    /**
+     * 增加新闻
+     * @param news
+     * @throws Exception
+     */
+    void saveNews(News news) throws Exception;
 
 }
