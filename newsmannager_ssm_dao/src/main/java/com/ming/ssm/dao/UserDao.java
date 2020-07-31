@@ -18,13 +18,15 @@ import java.util.List;
 @Repository
 public interface UserDao {
 
+
     /**
      * 查询所有用户
      * @return
+     * @throws Exception
      */
     @Select("select * from users")
     @Results({
-            @Result(id = true, property = "id", column = "id"),
+            @Result(id = true, property = "uid", column = "uid"),
             @Result(property = "username", column = "username"),
             @Result(property = "gender", column = "gender"),
             @Result(property = "age", column = "age"),

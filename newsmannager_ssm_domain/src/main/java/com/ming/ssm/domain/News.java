@@ -1,4 +1,7 @@
 package com.ming.ssm.domain;
+import com.ming.ssm.utils.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,16 +13,51 @@ import java.util.Date;
  */
 public class News implements Serializable {
     private String nid;
-    private String topicId;
+    private String tid;
+    private Topic topic;
     private String title;
     private String author;
     private String summary;
     private String content;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date creattime;
+    private String creattimeStr;
     private String creatby;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifytime;
+    private String modifytimeStr;
     private String modifyby;
     private int frequency;
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
+    public String getCreattimeStr() {
+        if (creattime != null) {
+            creattimeStr = DateUtils.dateToString(modifytime, "yyyy-MM-dd HH:mm:ss");
+        }
+        return creattimeStr;
+    }
+
+    public void setCreattimeStr(String creattimeStr) {
+        this.creattimeStr = creattimeStr;
+    }
+
+    public String getModifytimeStr() {
+        if (modifytime != null) {
+            modifytimeStr = DateUtils.dateToString(modifytime, "yyyy-MM-dd HH:mm:ss");
+        }
+        return modifytimeStr;
+    }
+
+    public void setModifytimeStr(String modifytimeStr) {
+        this.modifytimeStr = modifytimeStr;
+    }
 
     public String getNid() {
         return nid;
@@ -29,12 +67,12 @@ public class News implements Serializable {
         this.nid = nid;
     }
 
-    public String getTopicId() {
-        return topicId;
+    public String getTid() {
+        return tid;
     }
 
-    public void setTopicId(String topicId) {
-        this.topicId = topicId;
+    public void setTid(String tid) {
+        this.tid = tid;
     }
 
     public String getTitle() {
@@ -68,7 +106,6 @@ public class News implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
-
 
 
     public String getCreatby() {

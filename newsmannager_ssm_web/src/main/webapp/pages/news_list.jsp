@@ -13,12 +13,12 @@
     initial-scale: 初始的缩放比，为1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户信息管理系统</title>
+    <title>新闻信息管理</title>
 
     <!-- 1. 导入CSS的全局样式 -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
     <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
-    <script src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.js"></script>
     <!-- 3. 导入bootstrap的js文件 -->
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -28,27 +28,23 @@
     </style>
 
     <script>
-
-
-        function deleteUser(id) {
+        function deleteNews(id) {
 
             //用户安全提示
             if (confirm("你确定要删除吗？")) {
                 //访问路径
-                location.href = "${pageContext.request.contextPath}/deleteUserServlet?id=" + id;
+                location.href = "${pageContext.request.contextPath}/deleteNewsServlet?id=" + id;
             }
         }
 
-
         window.onload = function () {
-
             //给删除选中按钮添加单击事件
             document.getElementById("delSelected").onclick = function () {
                 if (confirm("您确定要删除选中条目吗？")) {
 
                     var flag = false;
                     //判断是否有选中条目
-                    var cbs = document.getElementsByName("uid");
+                    var cbs = document.getElementsByName("nid");
                     for (var i = 0; i < cbs.length; i++) {
                         if (cbs[i].checked) {
                             //有一个条目选中了
@@ -57,21 +53,21 @@
                         }
                     }
 
-                    if (flag) {
+                    if (flag) {//有条目被选中
                         //表单提交
                         document.getElementById("form").submit();
                     }
 
                 }
-            }
-            //1.获取第一个id
-            document.getElementById("firstCb").onclick = function () {
 
-                //2.获取下边列表中所有的cd
-                var cbs = document.getElementsByName("uid");
+            }
+            //1.获取第一个cb
+            document.getElementById("firstCb").onclick = function () {
+                //2.获取下边列表中所有的cb
+                var cbs = document.getElementsByName("nid");
                 //3.遍历
                 for (var i = 0; i < cbs.length; i++) {
-                    //4.设置这些cbs【i】的checked状态 = firstCb.checked
+                    //4.设置这些cbs[i]的checked状态 = firstCb.checked
                     cbs[i].checked = this.checked;
                 }
             }
@@ -108,14 +104,11 @@
             }
             return i;
         }
-
     </script>
 </head>
 <body class="col-center-block" onload="startTime()">
-
-<%--<div th:text="${msg}" id="msg" style="display:none">--%>
-<%--</div>--%>
 <div class="container">
+
     <div class="row">
         <div class="col-md-12 fl sj " style="background-color: #007BB5;color: #ffffff">
             欢迎使用新闻管理系统！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
@@ -187,30 +180,30 @@
                         </a>
                     </ul>
                 </li>
-
             </ul>
         </div>
     </div>
+
     <div class="row">
         <div class="jumbotron">
-            <h3 style="text-align: center">用户信息列表</h3>
+            <h3 style="text-align: center">新闻信息列表</h3>
             <div style="float: left;">
 
-                <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet"
+                <form class="form-inline" action="${pageContext.request.contextPath}/findNewsByPageServlet"
                       method="post">
                     <div class="form-group">
-                        <label for="exampleInputName1">姓名</label>
-                        <input type="text" name="username" value="${condition.username[0]}" class="form-control"
+                        <label for="exampleInputName1">主题</label>
+                        <input type="text" name="topic" value="${condition.topic[0]}" class="form-control"
                                id="exampleInputName1">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName2">年龄</label>
-                        <input type="text" name="age" value="${condition.age[0]}" class="form-control"
+                        <label for="exampleInputName2">标题</label>
+                        <input type="text" name="title" value="${condition.title[0]}" class="form-control"
                                id="exampleInputName2">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName3">邮箱</label>
-                        <input type="text" name="email" value="${condition.email[0]}" class="form-control"
+                        <label for="exampleInputName3">作者</label>
+                        <input type="text" name="author" value="${condition.author[0]}" class="form-control"
                                id="exampleInputName3">
                     </div>
                     <button type="submit" class="btn btn-default">查询</button>
@@ -224,37 +217,43 @@
                 </a>
             </div>
 
-            <form id="form" action="${pageContext.request.contextPath}/delUserSelectedServlet" method="post">
+            <form id="form" action="${pageContext.request.contextPath}/delNewsSelectedServlet" method="post">
                 <table border="1" class="table table-bordered table-hover">
                     <tr class="success">
                         <th><input type="checkbox" id="firstCb"></th>
                         <th>编号</th>
-                        <th>用户名</th>
-                        <th>性别</th>
-                        <th>年龄</th>
-                        <th>邮箱</th>
+                        <th>主题</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>创建时间</th>
+                        <th>创建人</th>
+                        <th>修改时间</th>
+                        <th>修改人</th>
+                        <th>查看次数</th>
                         <th>操作</th>
                     </tr>
 
-                    <c:forEach items="${pb.list}" var="user" varStatus="s">
+                    <c:forEach items="${pb.list}" var="news" varStatus="s">
                         <tr>
-                            <td><input type="checkbox" name="uid" value="${user.id}"></td>
+                            <td><input type="checkbox" name="nid" value="${news.nid}"></td>
                             <td>${s.count}</td>
-                            <td>${user.username}</td>
-                            <td>${user.gender}</td>
-                            <td>${user.age}</td>
-                            <td>${user.email}</td>
+                            <td>${news.topic.topicname}</td>
+                            <td>${news.title}</td>
+                            <td>${news.author}</td>
+                            <td>${news.creattimeStr}</td>
+                            <td>${news.creatby}</td>
+                            <td>${news.modifytimeStr}</td>
+                            <td>${news.modifyby}</td>
+                            <td>${news.frequency}</td>
                             <td><a class="btn btn-default btn-sm"
-                                   href="${pageContext.request.contextPath}/findUserByIdServlet?id=${user.id}">修改</a>&nbsp;
-                                <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id});">删除</a></td>
+                                   href="${pageContext.request.contextPath}/findNewsByIdServlet?nid=${news.nid}">修改</a>&nbsp;
+                                <a class="btn btn-default btn-sm" href="javascript:deleteNews(${news.nid});">删除</a></td>
                         </tr>
-
                     </c:forEach>
 
 
                 </table>
             </form>
-
             <div>
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
@@ -267,7 +266,7 @@
                             </c:if>
 
 
-                            <a href="${pageContext.request.contextPath}/user/findAll.do?page=${pb.pageNum - 1}&size=${pb.pageSize}"
+                            <a href="${pageContext.request.contextPath}/news/findAll.do?page=${pb.pageNum - 1}&size=${pb.pageSize}"
                                aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
@@ -279,12 +278,12 @@
 
                             <c:if test="${pb.pageNum == i}">
                                 <li class="active"><a
-                                        href="${pageContext.request.contextPath}/user/findAll.do?page=${i}&size=${pb.pageSize}">${i}</a>
+                                        href="${pageContext.request.contextPath}/news/findAll.do?page=${i}&size=${pb.pageSize}">${i}</a>
                                 </li>
                             </c:if>
                             <c:if test="${pb.pageNum != i}">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/user/findAll.do?page=${i}&size=${pb.pageSize}">${i}</a>
+                                    <a href="${pageContext.request.contextPath}/news/findAll.do?page=${i}&size=${pb.pageSize}">${i}</a>
                                 </li>
                             </c:if>
 
@@ -292,7 +291,7 @@
 
 
                         <li>
-                            <a href="${pageContext.request.contextPath}/user/findAll.do?page=${pb.pageNum + 1}&size=${pb.pageSize}"
+                            <a href="${pageContext.request.contextPath}/news/findAll.do?page=${pb.pageNum + 1}&size=${pb.pageSize}"
                                aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
@@ -303,9 +302,10 @@
 
                     </ul>
                 </nav>
+
+
             </div>
         </div>
-
     </div>
     <div id="footer" class="row text-center">
         <p class=""> 24小时客户服务热线：010-68988888 &#160;&#160;&#160;&#160; <a href="#">常见问题解答</a> &#160;&#160;&#160;&#160;
@@ -317,3 +317,4 @@
 </div>
 </body>
 </html>
+
