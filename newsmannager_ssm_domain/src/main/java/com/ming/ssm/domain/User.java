@@ -8,19 +8,20 @@ import java.io.Serializable;
  *@create: 2020-07-30 12:45
  */
 public class User implements Serializable {
-    private String uid;
+    private String userid;
     private String username;
     private String gender;
     private int age;
     private String email;
     private String password;
 
-    public String getId() {
-        return uid;
+
+    public String getUserid() {
+        return userid;
     }
 
-    public void setId(String uid) {
-        this.uid = uid;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getUsername() {

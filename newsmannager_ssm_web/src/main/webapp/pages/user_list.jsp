@@ -48,7 +48,7 @@
 
                     var flag = false;
                     //判断是否有选中条目
-                    var cbs = document.getElementsByName("uid");
+                    var cbs = document.getElementsByName("userid");
                     for (var i = 0; i < cbs.length; i++) {
                         if (cbs[i].checked) {
                             //有一个条目选中了
@@ -68,7 +68,7 @@
             document.getElementById("firstCb").onclick = function () {
 
                 //2.获取下边列表中所有的cd
-                var cbs = document.getElementsByName("uid");
+                var cbs = document.getElementsByName("userid");
                 //3.遍历
                 for (var i = 0; i < cbs.length; i++) {
                     //4.设置这些cbs【i】的checked状态 = firstCb.checked
@@ -238,15 +238,15 @@
 
                     <c:forEach items="${pb.list}" var="user" varStatus="s">
                         <tr>
-                            <td><input type="checkbox" name="uid" value="${user.id}"></td>
+                            <td><input type="checkbox" name="userid" value="${user.userid}"></td>
                             <td>${s.count}</td>
                             <td>${user.username}</td>
                             <td>${user.gender}</td>
                             <td>${user.age}</td>
                             <td>${user.email}</td>
                             <td><a class="btn btn-default btn-sm"
-                                   href="${pageContext.request.contextPath}/findUserByIdServlet?id=${user.id}">修改</a>&nbsp;
-                                <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id});">删除</a></td>
+                                   href="${pageContext.request.contextPath}/user/echoUser.do?userid=${user.userid}">修改</a>&nbsp;
+                                <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.userid});">删除</a></td>
                         </tr>
 
                     </c:forEach>

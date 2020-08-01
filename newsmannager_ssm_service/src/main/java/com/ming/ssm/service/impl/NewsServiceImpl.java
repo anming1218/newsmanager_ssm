@@ -45,5 +45,16 @@ public class NewsServiceImpl implements NewsService {
         newsDao.saveNews(news);
     }
 
+    /**
+     * 根据id查找新闻
+     * @param nid
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public News findNewsById(String nid) throws Exception {
+        return newsDao.findNewsById(nid);
+    }
+
 
 }

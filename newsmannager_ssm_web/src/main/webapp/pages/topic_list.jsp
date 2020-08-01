@@ -221,7 +221,7 @@
                             <td>${s.count}</td>
                             <td>${topic.topicname}</td>
                             <td><a class="btn btn-default btn-sm"
-                                   href="${pageContext.request.contextPath}/findTopicByIdServlet?id=${topic.tid}">修改</a>&nbsp;
+                                   href="${pageContext.request.contextPath}/topic/echoTopic.do?tid=${topic.tid}">修改</a>&nbsp;
                                 <a class="btn btn-default btn-sm" href="javascript:deleteTopic(${topic.tid});">删除</a>
                             </td>
                         </tr>

@@ -1,9 +1,7 @@
 package com.ming.ssm.controller;
 import com.github.pagehelper.PageInfo;
 import com.ming.ssm.domain.News;
-import com.ming.ssm.domain.Topic;
 import com.ming.ssm.service.NewsService;
-import com.ming.ssm.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +53,7 @@ public class NewsController {
 
         return "redirect:findAll.do";
     }
+
+
 
 }

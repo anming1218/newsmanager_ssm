@@ -1,9 +1,6 @@
 package com.ming.ssm.dao;
 import com.ming.ssm.domain.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,7 +22,7 @@ public interface UserDao {
      */
     @Select("select * from users")
     @Results({
-            @Result(id = true, property = "uid", column = "uid"),
+            @Result(id = true, property = "userid", column = "userid"),
             @Result(property = "username", column = "username"),
             @Result(property = "gender", column = "gender"),
             @Result(property = "age", column = "age"),
@@ -43,5 +40,29 @@ public interface UserDao {
     @Insert("INSERT INTO USERS(username, gender, age, email, password) VALUES (#{username},#{gender},#{age},#{email},#{password})")
     void saveUser(User user) throws Exception;
 
+    /**
+     * 根据id查找用户
+     * @param userid
+     * @return
+     */
+    @Select("select * from users where userid=#{userid}")
+    User findUserById(String userid);
+
+    /**
+     * 修改用户
+     * @param user
+     * @throws Exception
+     */
+    @Update("update users set gender=#{gender},age=#{age},email=#{email},password=#{password} where userid=#{userid}")
+    void updateUser(User user) throws Exception;
+
+    /**
+     * 登录方法，确认存在用户
+     * @param username
+     * @param password
+     * @return
+     */
+    @Select("select * from USERS where username = #{username} and password = #{password}")
+    User login(@Param("username") String username,@Param("password") String password);
 
 }

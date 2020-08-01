@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -50,6 +51,39 @@ public class TopicController {
     @RequestMapping("/saveTopic.do")
     public String saveTopic(Topic topic) throws Exception {
         service.saveTopic(topic);
+        return "redirect:findAll.do";
+    }
+
+    /**
+     * 主题信息回显
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/echoTopic.do")
+    public ModelAndView echoTopic(@RequestParam("tid") String tid) throws Exception {
+
+        ModelAndView mv = new ModelAndView();
+        Topic topic = service.findUserById(tid);
+
+        mv.addObject("topic", topic);
+        mv.setViewName("topic_update");
+
+        return mv;
+    }
+
+    /**
+     * 修改主题
+     * @param request
+     * @param topicname
+     */
+    @RequestMapping("/updateTopic.do")
+    public String updateTopic(HttpServletRequest request, @RequestParam("tid") String tid, @RequestParam("topicname") String topicname) throws Exception {
+        Topic topic = new Topic();
+        topic.setTid(tid);
+        topic.setTopicname(topicname);
+
+        service.updateTopic(topic);
         return "redirect:findAll.do";
     }
 }

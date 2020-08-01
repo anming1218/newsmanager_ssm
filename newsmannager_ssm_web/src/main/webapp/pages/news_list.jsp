@@ -246,7 +246,7 @@
                             <td>${news.modifyby}</td>
                             <td>${news.frequency}</td>
                             <td><a class="btn btn-default btn-sm"
-                                   href="${pageContext.request.contextPath}/findNewsByIdServlet?nid=${news.nid}">修改</a>&nbsp;
+                                   href="${pageContext.request.contextPath}/newsAndTopics/echoNews.do?nid=${news.nid}">修改</a>&nbsp;
                                 <a class="btn btn-default btn-sm" href="javascript:deleteNews(${news.nid});">删除</a></td>
                         </tr>
                     </c:forEach>

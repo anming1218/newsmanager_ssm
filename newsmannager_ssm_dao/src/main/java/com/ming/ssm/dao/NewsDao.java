@@ -24,7 +24,7 @@ public interface NewsDao {
     @Select("select * from news")
     @Results({
             @Result(id = true, property = "nid", column = "nid"),
-            @Result(property = "topic", column = "tid",javaType = Topic.class,one = @One(select = "com.ming.ssm.dao.TopicDao.findTopicById")),
+            @Result(property = "topic", column = "tid", javaType = Topic.class, one = @One(select = "com.ming.ssm.dao.TopicDao.findTopicById")),
             @Result(property = "title", column = "title"),
             @Result(property = "author", column = "author"),
             @Result(property = "summary", column = "summary"),
@@ -46,5 +46,22 @@ public interface NewsDao {
     @Insert("INSERT INTO NEWS(TID, title, author, summary, content, creattime, creatby,frequency) " +
             "VALUES (#{topic.tid},#{title},#{author},#{summary},#{content},#{creattime},#{creatby},#{frequency})")
     void saveNews(News news) throws Exception;
+
+    /**
+     * 根据id查找新闻
+     * @param nid
+     * @return
+     * @throws Exception
+     */
+    @Select("select * from news where nid=#{nid}")
+    News findNewsById(String nid) throws Exception;
+
+    /**
+     * 更新新闻
+     * @param news
+     * @throws Exception
+     */
+    @Update("update news set tid=#{topic.tid},title=#{title},author=#{author},summary=#{summary},modifyby=#{modifyby} where nid=#{nid}")
+    void updateNews(News news) throws Exception;
 
 }

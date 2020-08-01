@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
 
     /**
-     * 查询所有用户
+     * 查询所有用户(分页)
      * @return
      */
     @Override
@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
         PageHelper.startPage(page, size);
         return userDao.findAll();
     }
+
 
     /**
      * 增加用户
@@ -46,6 +47,43 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(MD5Utils.md5(user.getPassword()));
         userDao.saveUser(user);
+    }
+
+    /**
+     * 根据id查询用户信息
+     * @param userid
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public User findUserById(String userid) throws Exception {
+        return userDao.findUserById(userid);
+    }
+
+    /**
+     * 修改用户
+     * @param user
+     * @throws Exception
+     */
+    @Override
+    public void updateUser(User user) throws Exception {
+        userDao.updateUser(user);
+    }
+
+    /**
+     * 登录方法，确认存在用户
+     * @param username
+     * @param password
+     * @return
+     */
+    @Override
+    public User login(String username, String password) {
+
+        password = MD5Utils.md5(password);
+
+        return userDao.login(username, password);
 
     }
+
+
 }

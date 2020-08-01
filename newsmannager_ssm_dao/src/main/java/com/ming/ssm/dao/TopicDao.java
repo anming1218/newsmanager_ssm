@@ -1,9 +1,6 @@
 package com.ming.ssm.dao;
 import com.ming.ssm.domain.Topic;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -46,5 +43,13 @@ public interface TopicDao {
      */
     @Select("select * from topic where tid=#{tid}")
     Topic findTopicById(String tid) throws Exception;
+
+    /**
+     * 修改主题
+     * @param topic
+     * @throws Exception
+     */
+    @Update("update topic set topicname = #{topicname} where tid=#{tid}")
+    void updateTopic(Topic topic) throws Exception;
 
 }

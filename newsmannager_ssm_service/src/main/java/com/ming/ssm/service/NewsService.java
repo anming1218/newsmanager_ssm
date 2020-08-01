@@ -1,5 +1,6 @@
 package com.ming.ssm.service;
 import com.ming.ssm.domain.News;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -24,5 +25,13 @@ public interface NewsService {
      * @throws Exception
      */
     void saveNews(News news) throws Exception;
+
+    /**
+     * 根据id查找新闻
+     * @param nid
+     * @return
+     * @throws Exception
+     */
+    News findNewsById(String nid) throws Exception;
 
 }

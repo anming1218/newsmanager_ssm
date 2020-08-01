@@ -1,6 +1,5 @@
 package com.ming.ssm.service;
 import com.ming.ssm.domain.Topic;
-import org.apache.ibatis.annotations.Insert;
 
 import java.util.List;
 
@@ -32,6 +31,21 @@ public interface TopicService {
      * @throws Exception
      */
     void saveTopic(Topic topic) throws Exception;
+
+    /**
+     * 修改主题
+     * @param topic
+     * @throws Exception
+     */
+    void updateTopic(Topic topic) throws Exception;
+
+    /**
+     * 根据id查找主题
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    Topic findUserById(String tid) throws Exception;
 
 
 }

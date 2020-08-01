@@ -55,5 +55,24 @@ public class TopicServiceImpl implements TopicService {
         topicDao.saveTopic(topic);
     }
 
+    /**
+     * 修改主题
+     * @param topic
+     * @throws Exception
+     */
+    @Override
+    public void updateTopic(Topic topic) throws Exception {
+        topicDao.updateTopic(topic);
+    }
 
+    /**
+     * 根据id查找主题
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Topic findUserById(String tid) throws Exception {
+        return topicDao.findTopicById(tid);
+    }
 }

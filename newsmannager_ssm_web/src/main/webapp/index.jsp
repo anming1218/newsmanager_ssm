@@ -10,6 +10,7 @@
 <a href="${pageContext.request.contextPath}/pages/user_add.jsp">增加用户</a>
 <a href="${pageContext.request.contextPath}/pages/topic_add.jsp">增加主题</a>
 <a href="${pageContext.request.contextPath}/newsAndTopics/newsAddWithTopic.do">增加新闻</a>
+<a href="${pageContext.request.contextPath}/pages/home.jsp">主页</a>
 
 </body>
 </html>
