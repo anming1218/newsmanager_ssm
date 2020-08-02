@@ -1,6 +1,5 @@
 package com.ming.ssm.service;
 import com.ming.ssm.domain.Topic;
-import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
 
@@ -54,6 +53,13 @@ public interface TopicService {
      * @throws Exception
      */
     void deleteTopic(String tid) throws Exception;
+
+    /**
+     * 删除选中的主题
+     * @param tids
+     * @throws Exception
+     */
+    void deleteSelectedTopic(String[] tids) throws Exception;
 
 
 }

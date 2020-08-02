@@ -36,7 +36,7 @@
         <div class="form-group" style="text-align: center">
             <input class="btn btn-primary" type="submit" value="提交"/>
             <input class="btn btn-default" type="reset" value="重置"/>
-            <a href="${pageContext.request.contextPath}/findTopicByPageServlet"> <input class="btn btn-default"
+            <a href="${pageContext.request.contextPath}/topic/findAll.do"> <input class="btn btn-default"
                                                                                         type="button" value="返回"/></a>
         </div>
     </form>

@@ -85,4 +85,18 @@ public class TopicServiceImpl implements TopicService {
     public void deleteTopic(String tid) throws Exception {
         topicDao.deleteTopic(tid);
     }
+
+    /**
+     * 删除选中的主题
+     * @param tids
+     * @throws Exception
+     */
+    @Override
+    public void deleteSelectedTopic(String[] tids) throws Exception {
+        if (tids != null && tids.length > 0) {
+            for (String tid : tids) {
+                topicDao.deleteTopic(tid);
+            }
+        }
+    }
 }

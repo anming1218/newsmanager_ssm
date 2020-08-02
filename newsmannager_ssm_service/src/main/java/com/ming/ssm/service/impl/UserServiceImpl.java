@@ -96,6 +96,21 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 删除选中的用户
+     * @param userids
+     * @throws Exception
+     */
+    @Override
+    public void deleteSelectedUser(String[] userids) throws Exception {
+        if (userids != null && userids.length > 0) {
+            for (String userid : userids) {
+                userDao.deleteUser(userid);
+            }
+        }
+
+    }
+
+    /**
      * 根据条件模糊查询
      * @param username
      * @param age
@@ -105,7 +120,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findLikeUser(int page, int size, String username, int age, String email) {
         PageHelper.startPage(page, size);
-        return userDao.findLikeUser(username, age, email);
+        return userDao.findLikeUser("%username%", age, "%email%");
     }
 
 

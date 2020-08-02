@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,21 @@ public class NewsController {
     public String deleteNews(String nid)throws Exception{
         newsService.deleteNews(nid);
         return "redirect:findAll.do";
+    }
+
+    /**
+     * 删除选中的用户
+     * @param request
+     * @return
+     */
+    @RequestMapping("/deleteSelectNews.do")
+    public String deleteSelectNews(HttpServletRequest request) throws Exception {
+
+        String[] nids = request.getParameterValues("nid");
+
+        newsService.deleteSelectedNews(nids);
+
+        return "forward:findAll.do";
     }
 
 

@@ -38,40 +38,39 @@
 
         }
 
-        window.onload = function () {
-            //给删除选中按钮添加单击事件
-            document.getElementById("delSelected").onclick = function () {
-                if (confirm("您确定要删除选中条目吗？")) {
+        function deleteSelect() {
+            if (confirm("您确定要删除选中条目吗？")) {
 
-                    var flag = false;
-                    //判断是否有选中条目
-                    var cbs = document.getElementsByName("tid");
-                    for (var i = 0; i < cbs.length; i++) {
-                        if (cbs[i].checked) {
-                            //有一个条目选中了
-                            flag = true;
-                            break;
-                        }
-                    }
-
-                    if (flag) {//有条目被选中
-                        //表单提交
-                        document.getElementById("form").submit();
-                    }
-
-                }
-
-            }
-            //1.获取第一个cb
-            document.getElementById("firstCb").onclick = function () {
-                //2.获取下边列表中所有的cb
+                var flag = false;
+                //判断是否有选中条目
                 var cbs = document.getElementsByName("tid");
-                //3.遍历
                 for (var i = 0; i < cbs.length; i++) {
-                    //4.设置这些cbs[i]的checked状态 = firstCb.checked
-                    cbs[i].checked = this.checked;
+                    if (cbs[i].checked) {
+                        //有一个条目选中了
+                        flag = true;
+                        break;
+                    }
                 }
+
+                if (flag) {//有条目被选中
+                    //表单提交
+                    document.getElementById("form").submit();
+                }
+
             }
+
+        }
+
+        //1.获取第一个cb
+        document.getElementById("firstCb").onclick = function () {
+            //2.获取下边列表中所有的cb
+            var cbs = document.getElementsByName("tid");
+            //3.遍历
+            for (var i = 0; i < cbs.length; i++) {
+                //4.设置这些cbs[i]的checked状态 = firstCb.checked
+                cbs[i].checked = this.checked;
+            }
+
         }
 
         function startTime() {
@@ -127,8 +126,8 @@
     </div>
     <div class="row">
         <div class="col-md-12 fl sj " style="background-color: #007BB5;color: #ffffff">
-            <div id="status">亲爱的管理员${user.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
-                    href="${pageContext.request.contextPath}/quitServlet"><span style="color: #ffffff">退出登录</span></a>
+            <div id="status">亲爱的管理员${loginuser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                    href="${pageContext.request.contextPath}/home/quit.do"><span style="color: #ffffff">退出登录</span></a>
             </div>
 
         </div>
@@ -142,10 +141,10 @@
                         新闻管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="${pageContext.request.contextPath}/findTopicListToNewsAddServlet">
+                        <a href="${pageContext.request.contextPath}/newsAndTopics/newsAddWithTopic.do">
                             <li class="myli">增加新闻</li>
                         </a>
-                        <a href="${pageContext.request.contextPath}/findNewsByPageServlet">
+                        <a href="${pageContext.request.contextPath}/news/findAll.do">
                             <li class="myli">查看新闻</li>
                         </a>
                     </ul>
@@ -157,10 +156,10 @@
                         主题管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="${pageContext.request.contextPath}/newspages/topic_add.jsp">
+                        <a href="${pageContext.request.contextPath}/pages/topic_add.jsp">
                             <li class="myli">增加主题</li>
                         </a>
-                        <a href="${pageContext.request.contextPath}/findTopicByPageServlet">
+                        <a href="${pageContext.request.contextPath}/topic/findAll.do">
                             <li class="myli">查看主题</li>
                         </a>
                     </ul>
@@ -172,10 +171,10 @@
                         用户管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="${pageContext.request.contextPath}/newspages/user_add.jsp">
+                        <a href="${pageContext.request.contextPath}/pages/user_add.jsp">
                             <li class="myli">增加管理员</li>
                         </a>
-                        <a href="${pageContext.request.contextPath}/findUserByPageServlet">
+                        <a href="${pageContext.request.contextPath}/user/findAll.do">
                             <li class="myli">查看管理员</li>
                         </a>
                     </ul>
@@ -201,12 +200,12 @@
                 </form>
             </div>
             <div style="float: right;margin: 5px;">
-                <a class="btn btn-primary" href="javascript:void(0);" id="delSelected">删除选中</a>
-                <a href="${pageContext.request.contextPath}/newspages/admin.jsp">
+                <a class="btn btn-primary" href="javascript:void(0);" onclick="deleteSelect()">删除选中</a>
+                <a href="${pageContext.request.contextPath}/pages/admin.jsp">
                     <button type="button" class="btn btn-default">返回上一层</button>
                 </a>
             </div>
-            <form id="form" action="${pageContext.request.contextPath}/delTopicSelectedServlet" method="post">
+            <form id="form" action="${pageContext.request.contextPath}/topic/deleteSelectTopic.do" method="post">
                 <table border="1" class="table table-bordered table-hover">
                     <tr class="success">
                         <th><input type="checkbox" id="firstCb"></th>

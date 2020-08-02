@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -96,5 +97,20 @@ public class TopicController {
         service.deleteTopic(tid);
 
         return "redirect:findAll.do";
+    }
+
+    /**
+     * 删除选中的用户
+     * @param request
+     * @return
+     */
+    @RequestMapping("/deleteSelectTopic.do")
+    public String deleteSelectTopic(HttpServletRequest request) throws Exception {
+
+        String[] tids = request.getParameterValues("tid");
+
+        service.deleteSelectedTopic(tids);
+
+        return "forward:findAll.do";
     }
 }

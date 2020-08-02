@@ -4,11 +4,13 @@ import com.ming.ssm.domain.User;
 import com.ming.ssm.service.UserService;
 import com.ming.ssm.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -127,6 +129,21 @@ public class UserController {
     }
 
     /**
+     * 删除选中的用户
+     * @param request
+     * @return
+     */
+    @RequestMapping("/deleteSelectUser.do")
+    public String deleteSelectUser(HttpServletRequest request) throws Exception {
+
+        String[] userids = request.getParameterValues("userid");
+
+        userService.deleteSelectedUser(userids);
+
+        return "forward:findAll.do";
+    }
+
+    /**
      * 模糊查询用户
      * @param page
      * @param size
@@ -141,7 +158,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
         List<User> likeUser = userService.findLikeUser(page, size, username, Integer.parseInt(age), email);
         PageInfo pageInfo = new PageInfo(likeUser);
-        mv.addObject("pb", likeUser);
+        mv.addObject("pb", pageInfo);
         mv.setViewName("user_list");
         return mv;
     }

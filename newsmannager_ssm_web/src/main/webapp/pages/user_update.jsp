@@ -73,8 +73,8 @@
         <div class="form-group" style="text-align: center">
             <input class="btn btn-primary" type="submit" value="提交"/>
             <input class="btn btn-default" type="reset" value="重置"/>
-            <a href="${pageContext.request.contextPath}/findUserByPageServlet"> <input class="btn btn-default"
-                                                                                       type="button" value="返回"/></a>
+            <a href="${pageContext.request.contextPath}/user/findAll.do"> <input class="btn btn-default"
+                                                                                 type="button" value="返回"/></a>
         </div>
 
 

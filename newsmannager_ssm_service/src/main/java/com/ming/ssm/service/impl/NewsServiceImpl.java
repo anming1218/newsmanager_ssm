@@ -76,5 +76,61 @@ public class NewsServiceImpl implements NewsService {
         newsDao.deleteNews(nid);
     }
 
+    /**
+     * 删除选中的新闻
+     * @param nids
+     * @throws Exception
+     */
+    @Override
+    public void deleteSelectedNews(String[] nids) throws Exception {
+        if (nids != null && nids.length > 0) {
+            for (String nid : nids) {
+                newsDao.deleteNews(nid);
+            }
+        }
+    }
+
+    /**
+     * 查找全部新闻,并显示在主页(只查询nid和title)
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<News> findHomeNews(int page, int size) throws Exception {
+        PageHelper.startPage(page, size);
+        return newsDao.findHomeNews();
+    }
+
+    /**
+     * 分类查找新闻
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<News> findKindsNews(String tid) throws Exception {
+        return newsDao.findKindsNews(tid);
+    }
+
+    /**
+     * 查找实时新闻（新闻直播间）
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<News> findRealNews() throws Exception {
+        return newsDao.findRealNews();
+    }
+
+    /**
+     * 查找实时热搜新闻，依照查看次数
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<News> findHotNews() throws Exception {
+        return newsDao.findHotNews();
+    }
+
 
 }

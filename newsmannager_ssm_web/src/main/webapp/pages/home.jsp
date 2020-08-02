@@ -104,14 +104,14 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3"><img src="images/logo.gif" class="img-responsive center-block" alt="新闻中国"/></div>
-        <div class="col-md-9"><img src="images/a_b01.jpg" class="img-responsive " alt=""/></div>
+        <div class="col-md-3"><img src="${pageContext.request.contextPath}/images/logo.gif" class="img-responsive center-block" alt="新闻中国"/></div>
+        <div class="col-md-9"><img src="${pageContext.request.contextPath}/images/a_b01.jpg" class="img-responsive " alt=""/></div>
     </div>
 
     <div class="row">
         <div class="col-md-3">
             <div class="row">
-                <div class="col-md-12"><img src="images/localnews.gif" width="350" height="90"
+                <div class="col-md-12"><img src="${pageContext.request.contextPath}/images/localnews.gif" width="350" height="90"
                                             class="img-responsive center-block" alt="国内新闻"/>
                 </div>
             </div>
@@ -121,8 +121,8 @@
                         <a class="list-group-item list-group-item-success text-center">
                             微 观 中 国
                         </a>
-                        <c:forEach items="${localnews}" var="localnews">
-                            <a href="${pageContext.request.contextPath}/readNewsByIdServlet?id=${localnews.id}"
+                        <c:forEach items="${localnewss}" var="localnews">
+                            <a href="${pageContext.request.contextPath}/home/readNews.do?nid=${localnews.nid}"
                                class="list-group-item">${localnews.title}</a>
                         </c:forEach>
 
@@ -130,7 +130,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12"><img src="images/foriennews.gif" width="350" height="90"
+                <div class="col-md-12"><img src="${pageContext.request.contextPath}/images/foriennews.gif" width="350" height="90"
                                             class="img-responsive center-block" alt="国际新闻"/>
                 </div>
             </div>
@@ -140,15 +140,15 @@
                         <a class="list-group-item list-group-item-danger text-center">
                             环 球 要 闻
                         </a>
-                        <c:forEach items="${foriennews}" var="foriennews">
-                            <a href="${pageContext.request.contextPath}/readNewsByIdServlet?id=${foriennews.id}"
+                        <c:forEach items="${foriennewss}" var="foriennews">
+                            <a href="${pageContext.request.contextPath}/home/readNews.do?nid=${foriennews.nid}"
                                class="list-group-item">${foriennews.title}</a>
                         </c:forEach>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12"><img src="images/moneynews.gif" width="350" height="90"
+                <div class="col-md-12"><img src="${pageContext.request.contextPath}/images/moneynews.gif" width="350" height="90"
                                             class="img-responsive center-block" alt="财经新闻"/>
                 </div>
             </div>
@@ -158,8 +158,8 @@
                         <a class="list-group-item list-group-item-info text-center">
                             生 财 有 道
                         </a>
-                        <c:forEach items="${moneynews}" var="moneynews">
-                            <a href="${pageContext.request.contextPath}/readNewsByIdServlet?id=${moneynews.id}"
+                        <c:forEach items="${moneynewss}" var="moneynews">
+                            <a href="${pageContext.request.contextPath}/home/readNews.do?nid=${moneynews.nid}"
                                class="list-group-item">${moneynews.title}</a>
                         </c:forEach>
 
@@ -170,7 +170,7 @@
         </div>
         <div class="col-md-9">
             <div class="row">
-                <div class="col-md-12 class_type"><img src="images/class_type.gif"></div>
+                <div class="col-md-12 class_type"><img src="${pageContext.request.contextPath}/images/class_type.gif"></div>
             </div>
             <div class="row">
                 <div class="col-md-8">
@@ -182,14 +182,15 @@
                                         href="http://conferences.caixin.com/2020/caixinsummersummit2020/">
                                         2020财新夏季峰会~重启全球信心</h4>
                                     <a href="http://conferences.caixin.com/2020/caixinsummersummit2020/"><img
-                                            src="images/guanggao.gif" class="img-responsive" alt="广告"/></a>
+                                            src="${pageContext.request.contextPath}/images/guanggao.gif" class="img-responsive" alt="广告"/></a>
                                 </a>
                             </ul>
                             <ul class="list-group">
                                 <c:forEach items="${pb.list}" var="news" varStatus="s">
-                                    <a href="${pageContext.request.contextPath}/readNewsByIdServlet?id=${news.id}"
+                                    <a href="${pageContext.request.contextPath}/home/readNews.do?nid=${news.nid}"
                                        class="list-group-item ">
-                                        <h4 class="list-group-item-heading" style="font-family: 黑体">[${news.topic}]&nbsp;${news.title}</h4>
+                                        <h4 class="list-group-item-heading" style="font-family: 黑体">
+                                            [${news.topic.topicname}]&nbsp;${news.title}</h4>
                                         <p class="list-group-item-text" style="font-family: 新宋体">${news.summary}</p>
                                     </a>
                                 </c:forEach>
@@ -199,33 +200,33 @@
                                 <nav aria-label="Page navigation">
 
                                     <ul class="pagination">
-                                        <c:if test="${pb.currentPage == 1}">
+                                        <c:if test="${pb.pageNum == 1}">
                                         <li class="disabled">
                                             </c:if>
 
-                                            <c:if test="${pb.currentPage != 1}">
+                                            <c:if test="${pb.pageNum != 1}">
                                         <li>
                                             </c:if>
 
 
-                                            <a href="${pageContext.request.contextPath}/findNewsByPageToHomeServlet?currentPage=${pb.currentPage - 1}&rows=10&topic=${condition.topic[0]}&title=${condition.title[0]}&author=${condiyion.summary[0]}"
+                                            <a href="${pageContext.request.contextPath}/home/homeNews.do?page=${pb.pageNum - 1}&size=${pb.pageSize}"
                                                aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
 
 
-                                        <c:forEach begin="1" end="${pb.totalPage}" var="i">
+                                        <c:forEach begin="1" end="${pb.pages}" var="i">
 
 
-                                            <c:if test="${pb.currentPage == i}">
+                                            <c:if test="${pb.pageNum == i}">
                                                 <li class="active"><a
-                                                        href="${pageContext.request.contextPath}/findNewsByPageToHomeServlet?currentPage=${i}&rows=10&topic=${condition.topic[0]}&title=${condition.title[0]}&author=${condiyion.summaryr[0]}">${i}</a>
+                                                        href="${pageContext.request.contextPath}/home/homeNews.do?page=${i}&size=${pb.pageSize}">${i}</a>
                                                 </li>
                                             </c:if>
-                                            <c:if test="${pb.currentPage != i}">
+                                            <c:if test="${pb.pageNum != i}">
                                                 <li>
-                                                    <a href="${pageContext.request.contextPath}/findNewsByPageToHomeServlet?currentPage=${i}&rows=10&topic=${condition.topic[0]}&title=${condition.title[0]}&author=${condiyion.summary[0]}">${i}</a>
+                                                    <a href="${pageContext.request.contextPath}/home/homeNews.do?page=${i}&size=${pb.pageSize}">${i}</a>
                                                 </li>
                                             </c:if>
 
@@ -233,12 +234,12 @@
 
 
                                         <li>
-                                            <a href="${pageContext.request.contextPath}/findNewsByPageToHomexServlet?currentPage=${pb.currentPage + 1}&rows=10&topic=${condition.topic[0]}&title=${condition.title[0]}&author=${condiyion.summary[0]}"
+                                            <a href="${pageContext.request.contextPath}/home/homeNews.do?page=${pb.pageNum + 1}&size=${pb.pageSize}"
                                                aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         </li>
-                                        <span style="font-size: 25px;margin-left: 5px;">共${pb.totalCount}条记录，共${pb.totalPage}页   </span>
+                                        <span style="font-size: 25px;margin-left: 5px;">共${pb.total}条记录，共${pb.pages}页</span>
                                     </ul>
                                 </nav>
 
@@ -250,7 +251,7 @@
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="images/newszhibo.jpg" class="img-responsive center-block" alt="新闻直播间"/>
+                            <img src="${pageContext.request.contextPath}/images/newszhibo.jpg" class="img-responsive center-block" alt="新闻直播间"/>
                         </div>
                         <div class="col-md-12">
                             <table width="100%" border="0" cellpadding="2" cellspacing="2"
@@ -263,7 +264,7 @@
                                                 <ul>
                                                     <c:forEach items="${realtimenews}" var="realtimenews">
                                                         <li>
-                                                            <a href="${pageContext.request.contextPath}/readNewsByIdServlet?id=${realtimenews.id}">${realtimenews.title}</a>
+                                                            <a href="${pageContext.request.contextPath}/home/readNews.do?nid=${realtimenews.nid}">${realtimenews.title}</a>
                                                         </li>
                                                     </c:forEach>
                                                 </ul>
@@ -275,8 +276,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12"><img src="images/resou.gif" width="400" height="90"
-                                                    class="img-responsive center-block" alt="财经新闻"/>
+                        <div class="col-md-12"><img src="${pageContext.request.contextPath}/images/resou.gif" width="400" height="90"
+                                                    class="img-responsive center-block" alt="实时热搜"/>
                         </div>
                     </div>
                     <div class="row">
@@ -286,9 +287,9 @@
                                     实 时 热 搜
                                 </a>
                                 <c:forEach items="${hotnews}" var="hotnews" varStatus="s">
-                                    <a href="${pageContext.request.contextPath}/readNewsByIdServlet?id=${hotnews.id}"
+                                    <a href="${pageContext.request.contextPath}/home/readNews.do?nid=${hotnews.nid}"
                                        class="list-group-item" style="font-size: small;color: #0078B6">${s.count}.&nbsp;&nbsp;${hotnews.title}<img
-                                            src="images/re.jpg" class="img-responsive pull-right"></a>
+                                            src="${pageContext.request.contextPath}/images/re.jpg" class="img-responsive pull-right"></a>
                                 </c:forEach>
                             </div>
                         </div>
@@ -299,32 +300,32 @@
     </div>
     <div class="row" id="friend">
         <div class="col-md-12">
-            <h1 class="friend_t"><img src="images/friend_ico.gif" alt="合作伙伴"/></h1>
+            <h1 class="friend_t"><img src="${pageContext.request.contextPath}/images/friend_ico.gif" alt="合作伙伴"/></h1>
         </div>
 
         <div class="col-md-12 jumbotron">
             <div class="row">
                 <div class="col-xs-6 col-md-3">
                     <a href="http://www.xinhuanet.com/" class="thumbnail xinhua">
-                        <img src="images/xinhua.gif" class="img-responsive" alt="新华网">
+                        <img src="${pageContext.request.contextPath}/images/xinhua.gif" class="img-responsive" alt="新华网">
                     </a>
                 </div>
 
                 <div class="col-xs-6 col-md-3">
                     <a href="https://www.baidu.com/" class="thumbnail">
-                        <img src="images/baidu.gif" class="img-responsive" alt="百度">
+                        <img src="${pageContext.request.contextPath}/images/baidu.gif" class="img-responsive" alt="百度">
                     </a>
                 </div>
 
                 <div class="col-xs-6 col-md-3">
                     <a href="http://www.google.cn/" class="thumbnail">
-                        <img src="images/geogle.gif" class="img-responsive" alt="谷歌">
+                        <img src="${pageContext.request.contextPath}/images/geogle.gif" class="img-responsive" alt="谷歌">
                     </a>
                 </div>
 
                 <div class="col-xs-6 col-md-3">
                     <a href="https://www.huanqiu.com/" class="thumbnail">
-                        <img src="images/huanqiu.gif" class="img-responsive" alt="环球网">
+                        <img src="${pageContext.request.contextPath}/images/huanqiu.gif" class="img-responsive" alt="环球网">
                     </a>
                 </div>
 

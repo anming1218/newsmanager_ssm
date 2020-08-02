@@ -63,6 +63,13 @@ public interface UserService {
     void deleteUser(String userid) throws Exception;
 
     /**
+     * 删除选中的用户
+     * @param userids
+     * @throws Exception
+     */
+    void deleteSelectedUser(String[] userids) throws Exception;
+
+    /**
      * 根据条件模糊查询
      * @param username
      * @param age

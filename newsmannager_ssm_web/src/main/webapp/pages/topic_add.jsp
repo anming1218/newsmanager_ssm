@@ -111,8 +111,8 @@
     </div>
     <div class="row">
         <div class="col-md-12 fl sj " style="background-color: #007BB5;color: #ffffff">
-            <div id="status">亲爱的管理员${user.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
-                    href="${pageContext.request.contextPath}/quitServlet"><span style="color: #ffffff">退出登录</span></a></div>
+            <div id="status">亲爱的管理员${loginuser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                    href="${pageContext.request.contextPath}/home/quit.do"><span style="color: #ffffff">退出登录</span></a></div>
 
         </div>
     </div>
@@ -125,10 +125,10 @@
                         新闻管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="${pageContext.request.contextPath}/findTopicListToNewsAddServlet">
+                        <a href="${pageContext.request.contextPath}/newsAndTopics/newsAddWithTopic.do">
                             <li class="myli">增加新闻</li>
                         </a>
-                        <a href="${pageContext.request.contextPath}/findNewsByPageServlet">
+                        <a href="${pageContext.request.contextPath}/news/findAll.do">
                             <li class="myli">查看新闻</li>
                         </a>
                     </ul>
@@ -140,10 +140,10 @@
                         主题管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="${pageContext.request.contextPath}/newspages/topic_add.jsp">
+                        <a href="${pageContext.request.contextPath}/pages/topic_add.jsp">
                             <li class="myli">增加主题</li>
                         </a>
-                        <a href="${pageContext.request.contextPath}/findTopicByPageServlet">
+                        <a href="${pageContext.request.contextPath}/topic/findAll.do">
                             <li class="myli">查看主题</li>
                         </a>
                     </ul>
@@ -155,10 +155,10 @@
                         用户管理 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="${pageContext.request.contextPath}/newspages/user_add.jsp">
+                        <a href="${pageContext.request.contextPath}/pages/user_add.jsp">
                             <li class="myli">增加管理员</li>
                         </a>
-                        <a href="${pageContext.request.contextPath}/findUserByPageServlet">
+                        <a href="${pageContext.request.contextPath}/user/findAll.do">
                             <li class="myli">查看管理员</li>
                         </a>
                     </ul>
