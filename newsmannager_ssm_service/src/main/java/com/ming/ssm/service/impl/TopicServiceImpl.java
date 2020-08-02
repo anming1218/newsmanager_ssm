@@ -75,4 +75,14 @@ public class TopicServiceImpl implements TopicService {
     public Topic findUserById(String tid) throws Exception {
         return topicDao.findTopicById(tid);
     }
+
+    /**
+     * 根据id删除主题
+     * @param tid
+     * @throws Exception
+     */
+    @Override
+    public void deleteTopic(String tid) throws Exception {
+        topicDao.deleteTopic(tid);
+    }
 }

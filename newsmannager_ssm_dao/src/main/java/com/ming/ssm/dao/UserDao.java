@@ -65,4 +65,22 @@ public interface UserDao {
     @Select("select * from USERS where username = #{username} and password = #{password}")
     User login(@Param("username") String username,@Param("password") String password);
 
+    /**
+     * 根据id删除用户
+     * @param userid
+     * @throws Exception
+     */
+    @Delete("delete users where userid = #{userid}")
+    void deleteUser(String userid) throws Exception;
+
+    /**
+     * 根据条件模糊查询
+     * @param username
+     * @param age
+     * @param email
+     * @return
+     */
+    @Select("select * from USERS where 1=1 and username like '%#{username}%' and age like '%#{age}%' and email like '#{email}';")
+    List<User> findLikeUser(@Param("username")String username,@Param("age")int age,@Param("email")String email);
+
 }

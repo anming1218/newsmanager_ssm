@@ -28,12 +28,12 @@
     </style>
 
     <script>
-        function deleteNews(id) {
+        function deleteNews(nid) {
 
             //用户安全提示
             if (confirm("你确定要删除吗？")) {
                 //访问路径
-                location.href = "${pageContext.request.contextPath}/deleteNewsServlet?id=" + id;
+                location.href = "${pageContext.request.contextPath}/news/deleteNews.do?nid=" + nid;
             }
         }
 
@@ -247,7 +247,7 @@
                             <td>${news.frequency}</td>
                             <td><a class="btn btn-default btn-sm"
                                    href="${pageContext.request.contextPath}/newsAndTopics/echoNews.do?nid=${news.nid}">修改</a>&nbsp;
-                                <a class="btn btn-default btn-sm" href="javascript:deleteNews(${news.nid});">删除</a></td>
+                                <a class="btn btn-default btn-sm" href="javascript:deleteNews('${news.nid}');">删除</a></td>
                         </tr>
                     </c:forEach>
 

@@ -61,7 +61,15 @@ public interface NewsDao {
      * @param news
      * @throws Exception
      */
-    @Update("update news set tid=#{topic.tid},title=#{title},author=#{author},summary=#{summary},modifyby=#{modifyby} where nid=#{nid}")
-    void updateNews(News news) throws Exception;
+    @Update("update news set TID=#{topic.tid},title=#{title},author=#{author},summary=#{summary},modifyby=#{modifyby} where nid=#{nid}")
+    void updateNews( News news) throws Exception;
+
+    /**
+     * 根据id删除新闻
+     * @param nid
+     * @throws Exception
+     */
+    @Delete("delete news where nid =#{nid}")
+    void deleteNews(String nid) throws Exception;
 
 }

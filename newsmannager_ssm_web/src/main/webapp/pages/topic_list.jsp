@@ -28,12 +28,12 @@
     </style>
 
     <script>
-        function deleteTopic(id) {
+        function deleteTopic(tid) {
 
             //用户安全提示
             if (confirm("你确定要删除吗？")) {
                 //访问路径
-                location.href = "${pageContext.request.contextPath}/deleteTopicServlet?id=" + id;
+                location.href = "${pageContext.request.contextPath}/topic/deleteTopic.do?tid=" + tid;
             }
 
         }
@@ -222,7 +222,7 @@
                             <td>${topic.topicname}</td>
                             <td><a class="btn btn-default btn-sm"
                                    href="${pageContext.request.contextPath}/topic/echoTopic.do?tid=${topic.tid}">修改</a>&nbsp;
-                                <a class="btn btn-default btn-sm" href="javascript:deleteTopic(${topic.tid});">删除</a>
+                                <a class="btn btn-default btn-sm" href="javascript:deleteTopic('${topic.tid}');">删除</a>
                             </td>
                         </tr>
 

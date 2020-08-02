@@ -56,5 +56,25 @@ public class NewsServiceImpl implements NewsService {
         return newsDao.findNewsById(nid);
     }
 
+    /**
+     * 更新新闻
+     * @param news
+     * @throws Exception
+     */
+    @Override
+    public void updateNews(News news) throws Exception {
+        newsDao.updateNews(news);
+    }
+
+    /**
+     * 根据id删除新闻
+     * @param nid
+     * @throws Exception
+     */
+    @Override
+    public void deleteNews(String nid) throws Exception {
+        newsDao.deleteNews(nid);
+    }
+
 
 }

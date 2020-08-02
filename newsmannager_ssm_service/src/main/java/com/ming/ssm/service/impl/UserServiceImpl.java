@@ -85,5 +85,28 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * 根据id删除用户
+     * @param userid
+     * @throws Exception
+     */
+    @Override
+    public void deleteUser(String userid) throws Exception {
+        userDao.deleteUser(userid);
+    }
+
+    /**
+     * 根据条件模糊查询
+     * @param username
+     * @param age
+     * @param email
+     * @return
+     */
+    @Override
+    public List<User> findLikeUser(int page, int size, String username, int age, String email) {
+        PageHelper.startPage(page, size);
+        return userDao.findLikeUser(username, age, email);
+    }
+
 
 }

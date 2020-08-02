@@ -52,4 +52,12 @@ public interface TopicDao {
     @Update("update topic set topicname = #{topicname} where tid=#{tid}")
     void updateTopic(Topic topic) throws Exception;
 
+    /**
+     * 根据id删除主题
+     * @param tid
+     * @throws Exception
+     */
+    @Delete("delete topic where tid = #{tid}")
+    void deleteTopic(String tid) throws Exception;
+
 }

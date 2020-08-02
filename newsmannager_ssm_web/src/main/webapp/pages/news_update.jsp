@@ -20,17 +20,11 @@
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-
-    <%
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String date = format.format(new Date());
-    %>
-
 </head>
 <body>
 <div class="container" style="width: 400px;">
     <h3 style="text-align: center;">修改新闻</h3>
-    <form action="${pageContext.request.contextPath}/updateNewsServlet" method="post">
+    <form action="${pageContext.request.contextPath}/news/updateNews.do" method="post">
         <!--  隐藏域 提交id-->
         <input type="hidden" name="nid" value="${news.nid}">
 

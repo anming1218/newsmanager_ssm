@@ -2,8 +2,6 @@ package com.ming.ssm.service;
 
 
 import com.ming.ssm.domain.User;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -55,7 +53,23 @@ public interface UserService {
      * @param password
      * @return
      */
-    User login(String username,String password);
+    User login(String username, String password);
+
+    /**
+     * 根据id删除用户
+     * @param userid
+     * @throws Exception
+     */
+    void deleteUser(String userid) throws Exception;
+
+    /**
+     * 根据条件模糊查询
+     * @param username
+     * @param age
+     * @param email
+     * @return
+     */
+    List<User> findLikeUser(int page, int size, String username, int age, String email);
 
 
 }

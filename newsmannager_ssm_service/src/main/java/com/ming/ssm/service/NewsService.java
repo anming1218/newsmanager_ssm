@@ -1,6 +1,8 @@
 package com.ming.ssm.service;
 import com.ming.ssm.domain.News;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -33,5 +35,19 @@ public interface NewsService {
      * @throws Exception
      */
     News findNewsById(String nid) throws Exception;
+
+    /**
+     * 更新新闻
+     * @param news
+     * @throws Exception
+     */
+    void updateNews(News news) throws Exception;
+
+    /**
+     * 根据id删除新闻
+     * @param nid
+     * @throws Exception
+     */
+    void deleteNews(String nid) throws Exception;
 
 }

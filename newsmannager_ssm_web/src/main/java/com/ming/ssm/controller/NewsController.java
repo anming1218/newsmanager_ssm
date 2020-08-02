@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,10 +52,34 @@ public class NewsController {
     @RequestMapping("/saveTopic.do")
     public String saveNews(News news) throws Exception {
         newsService.saveNews(news);
-
         return "redirect:findAll.do";
     }
 
+    /**
+     * 修改新闻
+     * @param news
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/updateNews.do")
+    public String updateNews(News news) throws Exception {
+
+        newsService.updateNews(news);
+        return "redirect:findAll.do";
+
+    }
+
+    /**
+     * 根据id删除新闻
+     * @param nid
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/deleteNews.do")
+    public String deleteNews(String nid)throws Exception{
+        newsService.deleteNews(nid);
+        return "redirect:findAll.do";
+    }
 
 
 }

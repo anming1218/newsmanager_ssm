@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -74,16 +73,28 @@ public class TopicController {
 
     /**
      * 修改主题
-     * @param request
      * @param topicname
      */
     @RequestMapping("/updateTopic.do")
-    public String updateTopic(HttpServletRequest request, @RequestParam("tid") String tid, @RequestParam("topicname") String topicname) throws Exception {
+    public String updateTopic(@RequestParam("tid") String tid, @RequestParam("topicname") String topicname) throws Exception {
         Topic topic = new Topic();
         topic.setTid(tid);
         topic.setTopicname(topicname);
 
         service.updateTopic(topic);
+        return "redirect:findAll.do";
+    }
+
+    /**
+     * 根据id删除主题
+     * @param tid
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/deleteTopic.do")
+    public String deleteTopic(String tid) throws Exception {
+        service.deleteTopic(tid);
+
         return "redirect:findAll.do";
     }
 }

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" >
 <head>
     <!-- 指定字符集 -->
     <meta charset="utf-8">
@@ -29,16 +29,13 @@
 
     <script>
 
-
-        function deleteUser(id) {
-
+        function deleteUser(userid) {
             //用户安全提示
             if (confirm("你确定要删除吗？")) {
                 //访问路径
-                location.href = "${pageContext.request.contextPath}/deleteUserServlet?id=" + id;
+                location.href = "${pageContext.request.contextPath}/user/deleteUser.do?userid=" + userid;
             }
         }
-
 
         window.onload = function () {
 
@@ -196,22 +193,21 @@
             <h3 style="text-align: center">用户信息列表</h3>
             <div style="float: left;">
 
-                <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet"
-                      method="post">
+                <form class="form-inline" action="${pageContext.request.contextPath}/user/findLikeUser.do" method="post">
                     <div class="form-group">
-                        <label for="exampleInputName1">姓名</label>
-                        <input type="text" name="username" value="${condition.username[0]}" class="form-control"
-                               id="exampleInputName1">
+                        <label for="username_like">姓名</label>
+                        <input type="text" name="username_like" class="form-control"
+                               id="username_like">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName2">年龄</label>
-                        <input type="text" name="age" value="${condition.age[0]}" class="form-control"
-                               id="exampleInputName2">
+                        <label for="age_like">年龄</label>
+                        <input type="text" name="age_like"  class="form-control"
+                               id="age_like">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName3">邮箱</label>
-                        <input type="text" name="email" value="${condition.email[0]}" class="form-control"
-                               id="exampleInputName3">
+                        <label for="email_like">邮箱</label>
+                        <input type="text" name="email_like"  class="form-control"
+                               id="email_like">
                     </div>
                     <button type="submit" class="btn btn-default">查询</button>
                 </form>
@@ -246,7 +242,7 @@
                             <td>${user.email}</td>
                             <td><a class="btn btn-default btn-sm"
                                    href="${pageContext.request.contextPath}/user/echoUser.do?userid=${user.userid}">修改</a>&nbsp;
-                                <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.userid});">删除</a></td>
+                                <a class="btn btn-default btn-sm" href="javascript:deleteUser('${user.userid}');">删除</a></td>
                         </tr>
 
                     </c:forEach>
