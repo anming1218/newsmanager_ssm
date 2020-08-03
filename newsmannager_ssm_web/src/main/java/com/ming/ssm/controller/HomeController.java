@@ -38,7 +38,6 @@ public class HomeController {
         PageInfo pageInfo = new PageInfo(homeNews);
         mv.addObject("pb", pageInfo);
 
-//ceshi
 
         /*
          *   分类查找新闻
