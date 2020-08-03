@@ -188,7 +188,7 @@
             <h3 style="text-align: center">新闻信息列表</h3>
             <div style="float: left;">
 
-                <form class="form-inline" action="${pageContext.request.contextPath}/findNewsByPageServlet"
+<%--                <form class="form-inline" action="${pageContext.request.contextPath}/findNewsByPageServlet"
                       method="post">
                     <div class="form-group">
                         <label for="exampleInputName1">主题</label>
@@ -206,7 +206,7 @@
                                id="exampleInputName3">
                     </div>
                     <button type="submit" class="btn btn-default">查询</button>
-                </form>
+                </form>--%>
             </div>
 
             <div style="float: right;margin: 5px;">

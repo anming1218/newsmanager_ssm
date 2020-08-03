@@ -143,23 +143,4 @@ public class UserController {
         return "forward:findAll.do";
     }
 
-    /**
-     * 模糊查询用户
-     * @param page
-     * @param size
-     * @param username
-     * @param age
-     * @param email
-     * @return
-     */
-    @RequestMapping("/findLikeUser.do")
-    public ModelAndView findLikeUser(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "8") int size, @RequestParam("username_like") String username, @RequestParam("age_like") String age, @RequestParam("email_like") String email) {
-
-        ModelAndView mv = new ModelAndView();
-        List<User> likeUser = userService.findLikeUser(page, size, username, Integer.parseInt(age), email);
-        PageInfo pageInfo = new PageInfo(likeUser);
-        mv.addObject("pb", pageInfo);
-        mv.setViewName("user_list");
-        return mv;
-    }
 }

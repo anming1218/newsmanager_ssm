@@ -192,7 +192,7 @@
             <h3 style="text-align: center">用户信息列表</h3>
             <div style="float: left;">
 
-                <form class="form-inline" action="${pageContext.request.contextPath}/user/findLikeUser.do"
+<%--                <form class="form-inline" action="${pageContext.request.contextPath}/user/findLikeUser.do"
                       method="post">
                     <div class="form-group">
                         <label for="username_like">姓名</label>
@@ -210,7 +210,7 @@
                                id="email_like"/>
                     </div>
                     <button type="submit" class="btn btn-default">查询</button>
-                </form>
+                </form>--%>
             </div>
 
             <div style="float: right;margin: 5px;">

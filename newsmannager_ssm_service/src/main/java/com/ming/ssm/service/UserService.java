@@ -69,14 +69,6 @@ public interface UserService {
      */
     void deleteSelectedUser(String[] userids) throws Exception;
 
-    /**
-     * 根据条件模糊查询
-     * @param username
-     * @param age
-     * @param email
-     * @return
-     */
-    List<User> findLikeUser(int page, int size, String username, int age, String email);
 
 
 }

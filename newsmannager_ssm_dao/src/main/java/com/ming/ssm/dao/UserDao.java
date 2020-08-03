@@ -73,14 +73,5 @@ public interface UserDao {
     @Delete("delete users where userid = #{userid}")
     void deleteUser(String userid) throws Exception;
 
-    /**
-     * 根据条件模糊查询
-     * @param username
-     * @param age
-     * @param email
-     * @return
-     */
-    @Select("select * from USERS where 1=1 and username like #{username} and age = #{age} and email like #{email}")
-    List<User> findLikeUser(@Param("username") String username, @Param("age") int age, @Param("email") String email);
 
 }

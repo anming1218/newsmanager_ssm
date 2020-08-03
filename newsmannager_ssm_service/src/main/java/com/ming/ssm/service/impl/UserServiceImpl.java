@@ -110,18 +110,5 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    /**
-     * 根据条件模糊查询
-     * @param username
-     * @param age
-     * @param email
-     * @return
-     */
-    @Override
-    public List<User> findLikeUser(int page, int size, String username, int age, String email) {
-        PageHelper.startPage(page, size);
-        return userDao.findLikeUser("%username%", age, "%email%");
-    }
-
 
 }

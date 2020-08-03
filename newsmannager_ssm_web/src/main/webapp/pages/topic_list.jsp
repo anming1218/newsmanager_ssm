@@ -106,8 +106,8 @@
         }
     </script>
 </head>
-<body>
-<div class="container" onload="startTime()">
+<body class="col-center-block" onload="startTime()">
+<div class="container">
     <div class="row">
         <div class="col-md-12 fl sj " style="background-color: #007BB5;color: #ffffff">
             欢迎使用新闻管理系统！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
@@ -189,15 +189,15 @@
             <h3 style="text-align: center">主题信息列表</h3>
             <div style="float: left;">
 
-                <form class="form-inline" action="${pageContext.request.contextPath}/findTopicByPageServlet"
-                      method="post">
-                    <div class="form-group">
-                        <label for="exampleInputName2">主题</label>
-                        <input type="text" name="topicname" value="${condition.topicname[0]}" class="form-control"
-                               id="exampleInputName2">
-                    </div>
-                    <button type="submit" class="btn btn-default">查询</button>
-                </form>
+                <%--                <form class="form-inline" action="${pageContext.request.contextPath}/findTopicByPageServlet"
+                                      method="post">
+                                    <div class="form-group">
+                                        <label for="exampleInputName2">主题</label>
+                                        <input type="text" name="topicname" value="${condition.topicname[0]}" class="form-control"
+                                               id="exampleInputName2">
+                                    </div>
+                                    <button type="submit" class="btn btn-default">查询</button>
+                                </form>--%>
             </div>
             <div style="float: right;margin: 5px;">
                 <a class="btn btn-primary" href="javascript:void(0);" onclick="deleteSelect()">删除选中</a>
