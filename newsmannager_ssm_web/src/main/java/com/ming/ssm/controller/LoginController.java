@@ -68,7 +68,7 @@ public class LoginController {
         if (loginUser != null) {
             //登录成功
             //将用户存入session
-            mv.addObject("loginuser", loginUser);
+            session.setAttribute("loginuser", loginUser);
             mv.setViewName("admin");
             //跳转页面
             return mv;

@@ -233,7 +233,14 @@
                                         </c:forEach>
 
 
-                                        <li>
+                                            <c:if test="${pb.pageNum==pb.pages}">
+                                            <li class="disabled">
+                                                </c:if>
+
+
+                                                <c:if test="${pb.pageNum!=pb.pages}">
+                                            <li>
+                                                </c:if>
                                             <a href="${pageContext.request.contextPath}/home/homeNews.do?page=${pb.pageNum + 1}&size=${pb.pageSize}"
                                                aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
