@@ -1,5 +1,5 @@
+<jsp:useBean id="loginuser" scope="session" type="com.ming.ssm.domain.User"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -35,13 +35,13 @@
             mm = checkTime(mm);
             ss = checkTime(ss);
             var day; //用于保存星期（getDay()方法得到星期编号）
-            if (today.getDay() == 0) day = "星期日 "
-            if (today.getDay() == 1) day = "星期一 "
-            if (today.getDay() == 2) day = "星期二 "
-            if (today.getDay() == 3) day = "星期三 "
-            if (today.getDay() == 4) day = "星期四 "
-            if (today.getDay() == 5) day = "星期五 "
-            if (today.getDay() == 6) day = "星期六 "
+            if (today.getDay() === 0) day = "星期日 "
+            if (today.getDay() === 1) day = "星期一 "
+            if (today.getDay() === 2) day = "星期二 "
+            if (today.getDay() === 3) day = "星期三 "
+            if (today.getDay() === 4) day = "星期四 "
+            if (today.getDay() === 5) day = "星期五 "
+            if (today.getDay() === 6) day = "星期六 "
             document.getElementById('nowDateTimeSpan').innerHTML = yyyy + "-" + MM + "-" + dd + " " + hh + ":" + mm + ":" + ss + "   " + day;
             setTimeout('startTime()', 1000);//每一秒中重新加载startTime()方法
         }

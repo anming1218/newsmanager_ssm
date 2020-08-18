@@ -16,7 +16,7 @@
     <title>修改管理员</title>
 
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 </head>
